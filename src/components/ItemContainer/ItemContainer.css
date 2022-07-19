@@ -1,0 +1,30 @@
+
+.busqueda__imagen {
+    width: 150px;
+    height: 150px;
+}
+.busquedaresults {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    color: black;
+}
+.busquedaresults__card {
+    margin: 0px 0px;
+    width: 22rem;
+   
+}
+
+.busquedaresults__card h5{
+    
+        color: black;
+        font-weight: bold;
+        text-align: center;
+    
+}
+
+.rbusquedaresults h2{
+    display: flex;
+    flex-direction: row;
+}
