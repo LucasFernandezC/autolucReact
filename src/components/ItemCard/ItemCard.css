@@ -1,0 +1,7 @@
+.contadorStock{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin: 4px;
+}

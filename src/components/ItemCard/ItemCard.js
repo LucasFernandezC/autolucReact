@@ -1,7 +1,14 @@
 import React from "react";
+
 import './ItemCard.css'
+import ItemCounts from "../ItemCounts/ItemCounts";
+
+
 
 const ItemCard = (props) => {
+
+  
+
   return (
     <div>
       <article className="card busquedaresults__card">
@@ -13,8 +20,9 @@ const ItemCard = (props) => {
         <div className="card-body text-center">
           <h5 className="card-title titulotarjeta">{props.titulo}</h5>
           <p className="card-text">
-            {props.texto}
+            {props.texto} Stock: {props.stock}
           </p>
+          <ItemCounts inicial = "1" stock={props.stock}/>
           <a className="btn btn-primary start" id="agregar1">
             Me gusta
           </a>
