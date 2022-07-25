@@ -7,6 +7,7 @@ const ItemCounts = (props) => {
     const sumarItem = () => {
       if (contador< props.stock){
         setearContador (contador + 1)
+        props.onAdd()
       }
     }
     const restarItem = () => {
@@ -24,9 +25,6 @@ const ItemCounts = (props) => {
             <button onClick={sumarItem}>+</button>
           </div>
     )
-
-
-
 }
 
 export default ItemCounts

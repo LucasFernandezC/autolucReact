@@ -7,7 +7,7 @@ import ItemCounts from "../ItemCounts/ItemCounts";
 
 const ItemCard = (props) => {
 
-  
+const onAdd =() =>{console.log("hice click")}  
 
   return (
     <div>
@@ -22,7 +22,7 @@ const ItemCard = (props) => {
           <p className="card-text">
             {props.texto} Stock: {props.stock}
           </p>
-          <ItemCounts inicial = "1" stock={props.stock}/>
+          <ItemCounts inicial = "1" stock={props.stock} onAdd={onAdd}/>
           <a className="btn btn-primary start" id="agregar1">
             Me gusta
           </a>
