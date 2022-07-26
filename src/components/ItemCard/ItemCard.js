@@ -1,13 +1,13 @@
 import React from "react";
-
 import './ItemCard.css'
 import ItemCounts from "../ItemCounts/ItemCounts";
 
 
 
-const ItemCard = (props) => {
+const ItemCard = ({props}) => {
 
-const onAdd =() =>{console.log("hice click")}  
+const onAdd = () =>{console.log("hice click")}  
+//console.log("prueba: " + props.titulo)
 
   return (
     <div>
@@ -33,6 +33,6 @@ const onAdd =() =>{console.log("hice click")}
       </article>
     </div>
   );
-};
+}
 
 export default ItemCard;
