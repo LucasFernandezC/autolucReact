@@ -1,0 +1,23 @@
+.detalle {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    color: black;
+}
+
+.detalle img{
+    margin: 25px;
+
+}
+
+.detalle h2 {
+    margin-top: 35px;
+    font-weight: bolder;
+}
+.titulo__detalle {
+    text-align: start;
+    text-decoration: underline;
+    margin-top: 10px;
+    margin-left: 10px;
+}
