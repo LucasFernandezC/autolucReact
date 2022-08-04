@@ -5,3 +5,11 @@
     justify-content: center;
     margin: 4px;
 }
+
+.busquedaresults__card img {
+    width: 200px;
+    height: 200px;
+    justify-self: center;
+    align-self: center;
+
+}

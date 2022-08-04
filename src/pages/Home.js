@@ -3,13 +3,11 @@ import ItemContainer from "../components/ItemContainer/ItemContainer";
 import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer";
 
 const Home = () => {
-
-    return(
-        <header className="App-header">
-        <p>Hello World</p>
-        <ItemContainer section="Autos en venta"/>
-        </header>
-    )
-}
+  return (
+    <header className="App-header">
+      <ItemContainer section="Repuestos en venta" />
+    </header>
+  );
+};
 
 export default Home;

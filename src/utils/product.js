@@ -1,26 +1,76 @@
 const products = [
     {
         id:1,
-        texto:"4 ptas, Diesel, Sedan, Control de Estabilidad $ 199000" ,
-        titulo:"Ford 2016" ,
-        imagen:"./assets/images/ford.jpg" ,
+        texto:"Kit de 4 Amortiguadores Eibach competicion" ,
+        titulo:"Amortiguador" ,
+        imagen:"./assets/images/amortiguador.jpeg" ,
         stock:10,
+        precio: 500,
+        categoria: "suspension",
         inicial:1
     },
     {
         id:2,
-        texto:"5 ptas, Nafta, Sedan, aire acondicionado $ 200000" ,
-        titulo:"VW 2015" ,
-        imagen:"./assets/images/vw.jpg" ,
+        texto:"Bieleta de barra estabilizadora delantera" ,
+        titulo:"Bieleta" ,
+        imagen:"./assets/images/bieleta.jpeg" ,
         stock:7 ,
+        precio: 500,
+        categoria: "suspension",
         inicial:1
     },
     {
         id:3,
-        texto:"5 ptas, GNC, Sedan, aire acondicionado $ 150000" ,
-        titulo:"Fiat 2010" ,
-        imagen:"./assets/images/fiat.jpg" ,
+        texto:"Juego de Bujias con punta de iridio" ,
+        titulo:"Bujias" ,
+        imagen:"./assets/images/bujias.jpeg" ,
         stock:5 ,
+        precio: 500,
+        categoria: "motor",
+        inicial:1
+    }
+    ,
+    {
+        id:4,
+        texto:"Par de discos de freno ventilados de alto rendimiento" ,
+        titulo:"Disco de freno" ,
+        imagen:"./assets/images/discofreno.jpeg" ,
+        stock:5 ,
+        precio: 500,
+        categoria: "freno",
+        inicial:1
+    }
+    ,
+    {
+        id:5,
+        texto:"Filtro de aceite de alto rendimiento" ,
+        titulo:"Filtro de aceite" ,
+        imagen:"./assets/images/filtroaceite.jpeg" ,
+        stock:5 ,
+        precio: 500,
+        categoria: "motor",
+        inicial:1
+    }
+    ,
+    {
+        id:6,
+        texto:"Inyector importado para motor a Nafta" ,
+        titulo:"Inyector" ,
+        imagen:"./assets/images/inyector.jpeg" ,
+        stock:5 ,
+        precio: 500,
+        categoria: "motor",
+        inicial:1
+    }
+    ,
+    {
+        id:7,
+        texto:"Rotula de suspension maxima calidad" ,
+        titulo:"Rotula" ,
+        imagen:"./assets/images/rotula.jpeg" ,
+        stock:5 ,
+        precio: 500,
+        categoria: "suspension",
         inicial:1
     }
 ]

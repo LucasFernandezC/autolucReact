@@ -1,13 +1,13 @@
 import React from "react";
-import './ItemCard.css'
+import "./ItemCard.css";
 import ItemCounts from "../ItemCounts/ItemCounts";
+import {Link} from "react-router-dom";
 
-
-
-const ItemCard = ({props}) => {
-
-const onAdd = () =>{console.log("hice click")}  
-//console.log("prueba: " + props.titulo)
+const ItemCard = ({ props }) => {
+  const onAdd = () => {
+    console.log("hice click");
+  };
+  //console.log("prueba: " + props.titulo)
 
   return (
     <div>
@@ -20,19 +20,18 @@ const onAdd = () =>{console.log("hice click")}
         <div className="card-body text-center">
           <h5 className="card-title titulotarjeta">{props.titulo}</h5>
           <p className="card-text">
-            {props.texto} Stock: {props.stock}
+            {props.texto} 
           </p>
-          <ItemCounts inicial = "1" stock={props.stock} onAdd={onAdd}/>
-          <a className="btn btn-primary start" id="agregar1">
-            Me gusta
-          </a>
-          <a className="btn btn-success  end" id="reservar1">
-            Reservar
-          </a>
+          <p>Stock: {props.stock}</p>
+          <p>Precio: $ {props.precio}</p>
+          <ItemCounts inicial="1" stock={props.stock} onAdd={onAdd} />
+          <Link to={`/producto/${props.id}`} className="btn btn-primary start" id="agregar1">
+            Agregar
+          </Link>
         </div>
       </article>
     </div>
   );
-}
+};
 
 export default ItemCard;

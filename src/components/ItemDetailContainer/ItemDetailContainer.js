@@ -9,6 +9,7 @@ const ItemDetailContainer = () => {
 
     const [listProducts, setListProducts] = useState([]);
     const [detailProduct, setDetailProduct] = useState({});
+    const { id } = useParams()
     const getProducts = new Promise((resolve,reject) =>{
         
         setTimeout(()=>{
@@ -17,14 +18,15 @@ const ItemDetailContainer = () => {
 
         
     })
-
+    console.log(useParams())
     useEffect(()=>{
         getProducts.then((data)=>{
             
             setListProducts(data);
             
             data.some((data) => {
-                if(parseInt(data.id) == 2){
+                
+                if(parseInt(data.id) == parseInt(id)){
                     setDetailProduct(data)
                     
                 }
