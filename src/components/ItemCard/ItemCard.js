@@ -24,7 +24,7 @@ const ItemCard = ({ props }) => {
           </p>
           <p>Stock: {props.stock}</p>
           <p>Precio: $ {props.precio}</p>
-          <ItemCounts inicial="1" stock={props.stock} onAdd={onAdd} />
+          
           <Link to={`/producto/${props.id}`} className="btn btn-primary start" id="agregar1">
             Agregar
           </Link>
@@ -33,5 +33,5 @@ const ItemCard = ({ props }) => {
     </div>
   );
 };
-
+//<ItemCounts inicial="1" stock={props.stock} onAdd={onAdd} />
 export default ItemCard;

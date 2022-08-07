@@ -18,7 +18,7 @@ const ItemDetailContainer = () => {
 
         
     })
-    console.log(useParams())
+    
     useEffect(()=>{
         getProducts.then((data)=>{
             
@@ -35,7 +35,7 @@ const ItemDetailContainer = () => {
     },[]);
 
 
-   
+   console.log("detalle ",detailProduct)
 
 
   return (

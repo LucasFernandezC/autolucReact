@@ -1,13 +1,13 @@
 import React from "react";
 import "./ItemDetail.css";
 import ItemCounts from "../ItemCounts/ItemCounts";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ props }) => {
+  const [Quantity,setearCantidad] = useState(0)
+  console.log("seteo cantidad " ,Quantity)
   
-  const onAdd = () => {
-    console.log("hice click");
-  };
-  console.log(props);
   return (
     <div>
       <h5 className="titulo__detalle">DETALLE DE PRODUCTO</h5>
@@ -26,8 +26,8 @@ const ItemDetail = ({ props }) => {
             <p>Categoria: {props.categoria}</p>
             <p>Stock: {props.stock}</p>
             <p>Precio: {props.precio}</p>
-            <ItemCounts inicial="1" stock={props.stock} onAdd={onAdd} />
-            <button>Comprar!</button>
+            { Quantity == 0 ? <ItemCounts inicial="1" stock={props.stock} setQuantity={setearCantidad} /> : <Link to={"/cart"}> <button> Terminar Compra</button></Link>
+            }         
           </div>
         </article>
       </div>
