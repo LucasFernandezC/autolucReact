@@ -8,10 +8,11 @@
 
 .item-cart-product img {
     width: 15%;
+    height: 40px;
 }
 
 .item-cart-product img + .cart-product__details {
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -19,7 +20,7 @@
 }
 
 .item-cart-product .cart-product__details:nth-last-child(2) {
-    width: 40%;
+    width: 30%;
     display: flex;
     align-items: center;
 }
@@ -47,7 +48,7 @@ button.btn-delete-all {
     color: white;
     font-size: 16px;
     text-transform: uppercase;
-    padding: 5px 15px;
+    padding: 5px 5px;
     transition: all 0.3s ease;
 }
 
