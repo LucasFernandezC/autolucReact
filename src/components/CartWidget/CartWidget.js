@@ -46,10 +46,10 @@ const CartWidget = () => {
                                 <p>{product.titulo}</p>
                             </div>
                             <div className='cart-product__details'>
-                                <p>${product.precio}</p>
+                                <p>${product.precio} </p>
                             </div>
                             <div className='cart-product__details'>
-                                <p>C. {product.cantidad}</p>
+                                <p> Cant.: {product.cantidad}</p>
                             </div>
                             <div className='cart-product__action' >
                                 <DeleteIcon onClick={() => deleteProduct(product)}/>
