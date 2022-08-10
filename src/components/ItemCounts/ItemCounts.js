@@ -1,11 +1,14 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { cartContext } from "../../context/CartContext";
 
 const ItemCounts = (props) => {
   const [contador, setearContador] = useState(parseInt(props.inicial));
+  const {cartProducts, addProduct} = useContext(cartContext)
   
   const sumarItem = () => {
-    if (contador < props.stock) {
+    
+    if (contador < props.props.stock) {
       setearContador(contador + 1);
       
     }
@@ -17,8 +20,9 @@ const ItemCounts = (props) => {
   };
 
   const onAdd = () => {
-    
     props.setQuantity(contador)
+    const productoAgregar = {...props.props, cantidad:contador}
+    addProduct(productoAgregar)
   };
 
   return (
