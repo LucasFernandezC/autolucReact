@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useContext } from "react";
 import { cartContext } from "../../context/CartContext";
+import "./ItemCounts.css"
 
 const ItemCounts = (props) => {
   const [contador, setearContador] = useState(parseInt(props.inicial));
@@ -32,7 +33,7 @@ const ItemCounts = (props) => {
       <h3>{contador}</h3>
       <button onClick={sumarItem}>+</button>
       </div>
-    <button onClick={onAdd}> Agregar! </button>
+    <button className="btn btn-primary" onClick={onAdd}> Agregar! </button>
     </>
   );
 };

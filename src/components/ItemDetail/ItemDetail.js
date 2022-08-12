@@ -26,7 +26,7 @@ const ItemDetail = ({ props }) => {
             <p>Categoria: {props.categoria}</p>
             <p>Stock: {props.stock}</p>
             <p>Precio: {props.precio}</p>
-            { Quantity == 0 ? <ItemCounts inicial="1" props={props} setQuantity={setearCantidad} /> : <Link to={"/cart"}> <button> Terminar Compra</button></Link>
+            { Quantity == 0 ? <ItemCounts inicial="1" props={props} setQuantity={setearCantidad} /> : <Link to={"/cart"}> <button className="btn btn-success"> Terminar Compra</button></Link>
             }         
           </div>
         </article>

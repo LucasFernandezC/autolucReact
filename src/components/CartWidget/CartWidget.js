@@ -11,7 +11,7 @@ import { cartContext } from '../../context/CartContext';
 const CartWidget = () => {
     const [anchorEl, setAnchorEl] = useState(null);
 
-    const { cartProducts, clear, deleteProduct } = useContext(cartContext)
+    const { cartProducts, clear, deleteProduct,cartCantidad } = useContext(cartContext)
 
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -22,7 +22,7 @@ const CartWidget = () => {
     };
     return(
         <div className='cart-widget' >
-            
+            {cartCantidad > 0 ? <p>{cartCantidad}</p> : ""}
             <ShoppingCartIcon 
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
