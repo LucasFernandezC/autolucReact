@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const ItemDetail = ({ props }) => {
   const [Quantity,setearCantidad] = useState(0)
-  console.log("seteo cantidad " ,Quantity)
+  
   
   return (
     <div>

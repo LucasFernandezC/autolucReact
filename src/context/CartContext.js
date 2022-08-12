@@ -42,7 +42,7 @@ const CartProvider = ({ children }) => {
   };
 
   const deleteProduct = (product) => {
-    console.log("Producto a eliminar:", product)
+    
     setCartCantidad(cartCantidad - product.cantidad)
     setCartProducts(cartProducts.filter( (cartProduct) => cartProduct.id !== product.id) )
 }
