@@ -1,11 +1,17 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { cartContext } from "../../context/CartContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import "./cart.css";
+import Modal from "../Modal/Modal";
+import db from "../../utils/firebaseConfig";
+import { collection, addDoc, updateDoc,  doc } from "firebase/firestore/lite";
+import { async } from "@firebase/util";
 
 const Cart = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [success, setSuccess] = useState();
   const { cartProducts, clear, deleteProduct, cartCantidad } = useContext(
     cartContext
   );
@@ -14,6 +20,68 @@ const Cart = () => {
   cartProducts.forEach((e) => {
     totalcompra += e.cantidad * e.precio;
   });
+
+  const [orden, setOrden] = useState({
+    items: cartProducts.map((product) => {
+      return {
+        id: product.id,
+        titulo: product.titulo,
+        precio: product.precio,
+        cantidad: product.cantidad,
+      };
+    }),
+    comprador: {},
+    fecha: new Date().toLocaleString(),
+    total: totalcompra,
+  });
+
+  const [formData, setFormData] = useState({
+    nombre: "",
+    telefono: "",
+    email: "",
+  });
+
+  const updateDb = () => {
+
+    const docRef = doc(db, "products", "2lZSuyaRQJBlrZQiGmpV");
+    const data = {
+      stock: 100
+    }
+    updateDoc(docRef, data)
+  .then(docRef => {
+    console.log("actualice stock");
+})
+  }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const submitData = (e) => {
+    e.preventDefault();
+    grabarOrden({ ...orden, comprador: formData });
+  };
+
+  const grabarOrden = async (agregarOrden) => {
+    const collectionOrden = collection(db, "orders");
+    const ordenDoc = await addDoc(collectionOrden, agregarOrden)
+    setSuccess(ordenDoc.id)
+    orden.items.forEach((element) => {
+      const docRef = doc(db, "products", element.id);
+      const data = {
+      stock: (cartProducts.find(dato => dato.id == element.id).stock - element.cantidad) 
+    }
+    updateDoc(docRef, data)
+    .then(docRef => {
+      console.log("actualice stock");
+      })
+    })
+    clear();
+    setTimeout(()=>{
+      setShowModal(false);
+            },3000);
+    
+  };
 
   return (
     <>
@@ -24,7 +92,11 @@ const Cart = () => {
               <div className="cart_container">
                 <div className="cart_title">
                   Carrito de Compras
-                  <small> ({cartCantidad} {cartCantidad == 1 ? "item" : "items"} en tu carrito) </small>
+                  <small>
+                    {" "}
+                    ({cartCantidad} {cartCantidad == 1 ? "item" : "items"} en tu
+                    carrito){" "}
+                  </small>
                 </div>
                 <div className="cart_items">
                   <ul className="cart_list">
@@ -42,7 +114,7 @@ const Cart = () => {
                                     {product.titulo}
                                   </div>
                                 </div>
-                                
+
                                 <div className="cart_item_quantity cart_info_col">
                                   <div className="cart_item_title">
                                     Cantidad
@@ -82,13 +154,54 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="cart_buttons">
-                  {" "}
-                  <Link to={"/"}>
+                <Link to="/">
                     <button type="button" className="button cart_button_clear">
-                      Continuar comprando
+                      Continuar Comprando
                     </button>
-                  </Link>{" "}
+                  </Link>
+                  {!success && <button
+                    type="button"
+                    onClick={() => setShowModal(true)}
+                    className="button cart_button_clear">
+                    Finalizar compra
+                  </button>}
                 </div>
+
+                {showModal && (
+                  <Modal title="DATOS DE CONTACTO" close={() => setShowModal()}>
+                    {success ? (
+                      <>
+                        <h2>Su orden se genero y sera procesada a la brevedad</h2>
+                        <p>Numero de seguimiento : {success}</p>
+                      </>
+                    ) : (
+                      <form onSubmit={submitData}>
+                        <input
+                          type="text"
+                          name="nombre"
+                          placeholder="Ingrese el nombre"
+                          onChange={handleChange}
+                          value={formData.name}
+                        />
+                        <input
+                          type="number"
+                          name="telefono"
+                          placeholder="Ingrese el telefono"
+                          onChange={handleChange}
+                          value={formData.phone}
+                        />
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Ingrese el mail"
+                          onChange={handleChange}
+                          value={formData.email}
+                        />
+                        <button type="submit">Enviar</button>
+                      </form>
+                    )}
+                  </Modal>
+                )}
               </div>
             </div>
           </div>
