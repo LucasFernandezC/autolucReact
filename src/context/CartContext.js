@@ -17,8 +17,10 @@ const CartProvider = ({ children }) => {
       
       if (posicion != -1) {
         if((cartProducts[posicion].cantidad+producto.cantidad)>producto.stock){
+            let cantidadOriginal = cartProducts[posicion].cantidad
             cartProducts[posicion].cantidad = producto.stock
-            setCartCantidad((cartCantidad - cartProducts[posicion].cantidad) + producto.stock)
+            console.log("cartcantidad ", cartCantidad, " carproduct cantidada ",cantidadOriginal)
+            setCartCantidad((cartCantidad - cantidadOriginal) + producto.stock)
             
         }
         else{

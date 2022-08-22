@@ -9,6 +9,7 @@ import Detail from "./pages/Detail";
 import Checkout from "./pages/Checkout";
 import CartProvider from "./context/CartContext";
 
+
 function App() {
   return (
     <div className="App">

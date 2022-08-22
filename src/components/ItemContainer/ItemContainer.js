@@ -1,32 +1,50 @@
 import React from "react";
 import ItemList from "../ItemList/ItemList";
-import products from "../../utils/product";
 import "./ItemContainer.css";
 import { useState, useEffect } from "react";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getDocs, collection, query, where } from "firebase/firestore/lite";
+import db from "../..//utils/firebaseConfig";
+import { CategoryOutlined } from "@mui/icons-material";
 
 const ItemContainer = ({ section }) => {
   const [listProducts, setListProducts] = useState([]);
   const { category } = useParams();
 
-  const getProducts = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(products);
-    }, 2000);
-  });
+  const getProducts = async () => {
+    const productCollection = collection(db, "products");
+    if (category != undefined) {
+      const q1 = query(productCollection, where("categoria", "==", category));
+      console.log("q1 ", q1);
+      let productSnapshoot = await getDocs(q1);
+      const productList = productSnapshoot.docs.map((doc) => {
+        console.log("product snapshot query: ", doc.data());
+        let fullproduct = doc.data();
+        fullproduct.id = doc.id;
+        return fullproduct;
+      });
+      return productList;
+    } else {
+      const productSnapshoot = await getDocs(productCollection);
+      const productList = productSnapshoot.docs.map((doc) => {
+        let fullproduct = doc.data();
+        fullproduct.id = doc.id;
+        return fullproduct;
+      });
+      return productList;
+    }
+  };
+
 
   useEffect(() => {
-    getProducts.then((data) => {
-      
-      console.log(category)
-      if(category != undefined){
-        console.log("entre a filtrar el array")
-        data.filter( () => {
-          data = data.filter((el) => el.categoria == category);
-        })
-      }
-      setListProducts(data);
-      
+    getProducts().then((res) => {
+      //filtrado previo a la implementacion de where
+      //if (category != undefined) {
+      //  res.filter(() => {
+      //    res = res.filter((el) => el.categoria == category);
+      //  });
+      //}
+      setListProducts(res);
     });
   }, [category]);
 
