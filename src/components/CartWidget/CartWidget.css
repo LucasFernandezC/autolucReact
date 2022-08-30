@@ -9,6 +9,7 @@
 .cart-widget {
     display: flex;
     flex-direction: row;
+    color: black;
 }
 
 .item-cart-product img {
@@ -59,5 +60,13 @@ button.btn-delete-all {
 
 button.btn-delete-all:hover {
     background: white;
+    color: black;
+}
+
+.dropdown-toggle::after {
+    display:none !important;
+}
+
+.carritoIcon{
     color: black;
 }

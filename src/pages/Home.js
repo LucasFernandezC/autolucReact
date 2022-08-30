@@ -1,11 +1,16 @@
 import React from "react";
 import ItemContainer from "../components/ItemContainer/ItemContainer";
-import ItemDetailContainer from "../components/ItemDetailContainer/ItemDetailContainer";
+import { useParams } from "react-router-dom";
+import { VapingRoomsTwoTone } from "@mui/icons-material";
 
 const Home = () => {
+
+  const { category } = useParams()
+  let section = (category? "Repuestos de " + category : "Repuestos en venta")
+
   return (
     <header className="App-header">
-      <ItemContainer section="Repuestos en venta" />
+      <ItemContainer section={section} />
     </header>
   );
 };

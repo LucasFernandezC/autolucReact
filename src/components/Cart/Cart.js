@@ -1,20 +1,28 @@
 import React from "react";
 import { useContext, useState } from "react";
 import { cartContext } from "../../context/CartContext";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import "./cart.css";
 import Modal from "../Modal/Modal";
 import db from "../../utils/firebaseConfig";
-import { collection, addDoc, updateDoc,  doc } from "firebase/firestore/lite";
+
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  getDoc,
+} from "firebase/firestore/lite";
 import { async } from "@firebase/util";
 
 const Cart = () => {
   const [showModal, setShowModal] = useState(false);
   const [success, setSuccess] = useState();
+  const [itemSinStock, setItemSinStock] = useState([]);
   const { cartProducts, clear, deleteProduct, cartCantidad } = useContext(
     cartContext
   );
+  let arraySinStock = [];
 
   let totalcompra = 0;
   cartProducts.forEach((e) => {
@@ -41,46 +49,69 @@ const Cart = () => {
     email: "",
   });
 
-  const updateDb = () => {
-
-    const docRef = doc(db, "products", "2lZSuyaRQJBlrZQiGmpV");
-    const data = {
-      stock: 100
-    }
-    updateDoc(docRef, data)
-  .then(docRef => {
-    console.log("actualice stock");
-})
-  }
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const submitData = (e) => {
     e.preventDefault();
+
     grabarOrden({ ...orden, comprador: formData });
   };
 
-  const grabarOrden = async (agregarOrden) => {
-    const collectionOrden = collection(db, "orders");
-    const ordenDoc = await addDoc(collectionOrden, agregarOrden)
-    setSuccess(ordenDoc.id)
+  const checkStock = () => {
     orden.items.forEach((element) => {
       const docRef = doc(db, "products", element.id);
-      const data = {
-      stock: (cartProducts.find(dato => dato.id == element.id).stock - element.cantidad) 
+      const docSnapshot = getDoc(docRef);
+      docSnapshot.then((resultado) => {
+        console.log(resultado.data().stock, element.cantidad);
+        if (resultado.data().stock < element.cantidad) {
+          let errStock = "errStock";
+          setSuccess(errStock);
+          arraySinStock = [...arraySinStock, element];
+          console.log("array sin stock", arraySinStock);
+          setItemSinStock([arraySinStock]);
+          deleteProduct(element);
+        }
+      });
+    });
+  };
+
+  const grabarOrden = async (agregarOrden) => {
+    console.log("success 3: ", success, arraySinStock, itemSinStock);
+    if (itemSinStock.length == 0) {
+      const collectionOrden = collection(db, "orders");
+      //const ordenDoc = await addDoc(collectionOrden, agregarOrden);
+      addDoc(collectionOrden, agregarOrden).then((ordenDoc) => {
+        setSuccess(ordenDoc.id);
+        console.log("success 4: ", success);
+        //al confirmar la orden se actualiza el stock de los productos del carrito
+        orden.items.forEach((element) => {
+          const docRef = doc(db, "products", element.id);
+          const data = {
+            stock:
+              cartProducts.find((dato) => dato.id == element.id).stock -
+              element.cantidad,
+          };
+          updateDoc(docRef, data).then((docRef) => {
+            console.log("actualice stock");
+          });
+        });
+        // fin actualizacion stock
+        //limpio el carrito
+        clear();
+        //fin limpio carrito
+        //muestro la orden por un momento y vuelvo a la pantalla de compra
+        setTimeout(() => {
+          setShowModal(false);
+        }, 3000);
+        //fin muestro orden
+      });
+    } else {
+      setTimeout(() => {
+        setShowModal(false);
+      }, 5000);
     }
-    updateDoc(docRef, data)
-    .then(docRef => {
-      console.log("actualice stock");
-      })
-    })
-    clear();
-    setTimeout(()=>{
-      setShowModal(false);
-            },3000);
-    
   };
 
   return (
@@ -136,9 +167,9 @@ const Cart = () => {
                                   </div>
                                 </div>
                                 <div className="cart-product__action">
-                                  <DeleteIcon
-                                    onClick={() => deleteProduct(product)}
-                                  />
+                                  <div onClick={() => deleteProduct(product)}>
+                                    <i class="bi bi-trash"></i>
+                                  </div>
                                 </div>
                               </div>
                             </li>
@@ -154,28 +185,27 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="cart_buttons">
-                <Link to="/">
+                  <Link to="/">
                     <button type="button" className="button cart_button_clear">
                       Continuar Comprando
                     </button>
                   </Link>
-                  {!success && <button
-                    type="button"
-                    onClick={() => setShowModal(true)}
-                    className="button cart_button_clear">
-                    Finalizar compra
-                  </button>}
+                  {cartCantidad>0 &&
+                  [!success && (
+                    <button
+                      type="button"
+                      onClick={() => setShowModal(true)}
+                      className="button cart_button_clear"
+                    >
+                      Finalizar compra
+                    </button>
+                  )]}
                 </div>
 
                 {showModal && (
                   <Modal title="DATOS DE CONTACTO" close={() => setShowModal()}>
-                    {success ? (
-                      <>
-                        <h2>Su orden se genero y sera procesada a la brevedad</h2>
-                        <p>Numero de seguimiento : {success}</p>
-                      </>
-                    ) : (
-                      <form onSubmit={submitData}>
+                    {success == undefined ? (
+                      <form action="#" id="form" onSubmit={submitData}>
                         <input
                           type="text"
                           name="nombre"
@@ -199,6 +229,63 @@ const Cart = () => {
                         />
                         <button type="submit">Enviar</button>
                       </form>
+                    ) : (
+                      [
+                        console.log(arraySinStock),
+                        success == "errStock" ? (
+                          <>
+                            <h1>
+                              Se eliminaron los siguientes productos del carro
+                              de compras por no contar con stock
+                            </h1>
+                            {arraySinStock.map((product) => {
+                              return (
+                                <>
+                                  <li
+                                    className="cart_item clearfix"
+                                    key={product.id}
+                                  >
+                                    <div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                      <div className="cart_item_name cart_info_col">
+                                        <div className="cart_item_title">
+                                          Nombre
+                                        </div>
+                                        <div className="cart_item_text">
+                                          {product.titulo}
+                                        </div>
+                                      </div>
+
+                                      <div className="cart_item_quantity cart_info_col">
+                                        <div className="cart_item_title">
+                                          Cantidad
+                                        </div>
+                                        <div className="cart_item_text">
+                                          {product.cantidad}
+                                        </div>
+                                      </div>
+                                      <div className="cart_item_price cart_info_col">
+                                        <div className="cart_item_title">
+                                          Precio
+                                        </div>
+                                        <div className="cart_item_text">
+                                          $ {product.precio}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </>
+                              );
+                            })}
+                          </>
+                        ) : (
+                          <>
+                            <h2>
+                              Su orden se genero y sera procesada a la brevedad
+                            </h2>
+                            <p>Numero de seguimiento : {success}</p>
+                          </>
+                        ),
+                      ]
                     )}
                   </Modal>
                 )}

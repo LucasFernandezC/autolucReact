@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getDocs, collection, query, where } from "firebase/firestore/lite";
 import db from "../..//utils/firebaseConfig";
-import { CategoryOutlined } from "@mui/icons-material";
 
 const ItemContainer = ({ section }) => {
   const [listProducts, setListProducts] = useState([]);

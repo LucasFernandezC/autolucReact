@@ -1,66 +1,63 @@
-import React from 'react';
-import {useState , useContext} from 'react'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import DeleteIcon from '@mui/icons-material/Delete';
+import React from "react";
+import { useState, useContext } from "react";
 import "./CartWidget.css";
-import { cartContext } from '../../context/CartContext';
+import { cartContext } from "../../context/CartContext";
+import { NavDropdown } from "react-bootstrap";
 
 
 const CartWidget = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
+  
+  const { cartProducts, clear, deleteProduct, cartCantidad } = useContext(
+    cartContext
+  );
 
-    const { cartProducts, clear, deleteProduct,cartCantidad } = useContext(cartContext)
+  
+  return (
+    <div className="cart-widget">
+      
+      <NavDropdown
+        title={
+          <span>
+            <h2><i className="bi bi-cart-fill carritoIcon"></i></h2>
+          </span>
+        }
+        id="collasible-nav-dropdown"
+      >
+          {cartProducts.map((product) => {
+          return (
+            <NavDropdown.Item>
+            <div className="item-cart-product" key={product.id}>
+              <img src={`../${product.imagen}`} alt="" />
+              <div className="cart-product__details">
+                <p>{product.titulo}</p>
+              </div>
+              <div className="cart-product__details">
+                <p>${product.precio} </p>
+              </div>
+              <div className="cart-product__details">
+                <p> Cant.: {product.cantidad}</p>
+              </div>
+              <div className="cart-product__action">
+                <div onClick={() => deleteProduct(product)}>
+                  <i class="bi bi-trash"></i>
+                </div>{" "}
+              </div>
+            </div>
+            </NavDropdown.Item>
+          );
+        })}
+        
+        {cartCantidad > 0 && (
+            <NavDropdown.Item >
+          <button onClick={() => clear()} className={"btn-delete-all"}>
+            Borrar todo
+          </button>
+          </NavDropdown.Item>
+        )}
+      </NavDropdown>
+      {cartCantidad > 0 ? <p>{cartCantidad}</p> : ""}
+    </div>
+  );
+};
 
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    return(
-        <div className='cart-widget' >
-            {cartCantidad > 0 ? <p>{cartCantidad}</p> : ""}
-            <ShoppingCartIcon 
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-            />
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                'aria-labelledby': 'basic-button',
-                }}
-            >
-                {cartProducts.map((product) => {
-                    return(
-                        <div className='item-cart-product' key={product.id}>
-                            <img src={`../${product.imagen}`} alt="" />
-                            <div className='cart-product__details'>
-                                <p>{product.titulo}</p>
-                            </div>
-                            <div className='cart-product__details'>
-                                <p>${product.precio} </p>
-                            </div>
-                            <div className='cart-product__details'>
-                                <p> Cant.: {product.cantidad}</p>
-                            </div>
-                            <div className='cart-product__action' >
-                                <DeleteIcon onClick={() => deleteProduct(product)}/>
-                            </div>
-                        </div>
-                    )
-                })}
-                <button onClick={() => clear()} className={"btn-delete-all"}>Borrar todo</button>
-            </Menu>
-        </div>
-    )
-}
-
-export default CartWidget
+export default CartWidget;

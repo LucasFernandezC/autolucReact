@@ -1,11 +1,14 @@
 import React from "react";
 import CartWidget from "../CartWidget/CartWidget";
 import { Link } from "react-router-dom";
+import "./NavBar.css";
 
 const NavBar = () => {
   return (
+    <>
+    
     <div className="col-lg-7 col-sm-12 menudis">
-      <CartWidget />
+    <CartWidget />
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
           <a className="navbar-brand" href="..."></a>
@@ -25,23 +28,24 @@ const NavBar = () => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <Link className="nav-link active" aria-current="page" to="/">
-                Home
+              <Link className="nav-link" aria-current="page" to="/">
+                <p className="navbarFont" >Home</p>
               </Link>
               <Link className="nav-link" to="/suspension">
-                Suspension
+              <p className="navbarFont" >Suspension</p>
               </Link>
               <Link className="nav-link" to="/motor">
-                Motor
+              <p className="navbarFont" >Motor</p>
               </Link>
               <Link className="nav-link" to="/freno">
-                Frenos
+              <p className="navbarFont" >Frenos</p>
               </Link>
             </div>
           </div>
         </div>
       </nav>
     </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Header from "./components/Header/Header";
 import ItemContainer from "./components/ItemContainer/ItemContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
