@@ -1,7 +1,7 @@
 import React from "react";
 import ItemContainer from "../components/ItemContainer/ItemContainer";
 import { useParams } from "react-router-dom";
-import { VapingRoomsTwoTone } from "@mui/icons-material";
+
 
 const Home = () => {
 
