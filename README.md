@@ -1,5 +1,5 @@
 # AutoLuc 
-![](/autoluc/public/assets/images/logo.png)
+![](/public/assets/images/logo.png)
 El proyecto comienza con la necesidad de realizar un market place para una tienda de vente de Repuestos de autos.
 Para dar solucion a esto se desarrollo un sitio basado en React con la premisa de ser una SPA. 
 Como soporte de informacion se utiliza una base de datos de FireBase.
@@ -31,7 +31,7 @@ En caso de querer copiar el proyecto y utilizarlo de base, realizar los siguient
 ## Previsualizacion
 A continuacion podemos ver una pantalla de preview del sitio.
 
-![](/autoluc/public/assets/images/sitio.png)
+![](/public/assets/images/sitio.png)
 
 ### Notes
 
