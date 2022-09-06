@@ -2,8 +2,8 @@
 # AutoLuc 
 
 El proyecto comienza con la necesidad de realizar un market place para una tienda de vente de Repuestos de autos.
-Para dar solución a esto se desarrollo un sitio basado en React con la premisa de ser una SPA. 
-Como soporte de informacion se utiliza una base de datos de FireBase.
+Para dar solución a esto se desarrolló un sitio basado en React con la premisa de ser una SPA. 
+Como soporte de información se utiliza una base de datos de FireBase.
 
 ## Contenido
 
@@ -34,34 +34,34 @@ En caso de querer copiar el proyecto y utilizarlo de base, realizar los siguient
 
 ## Previsualizacion
 
-A continuacion podemos ver una pantalla de preview del sitio.
+A continuación podemos ver una pantalla de preview del sitio.
 
 ![](/public/assets/images/sitio.png)
 
-## Caracteristicas relevantes del proyecto
+## Características relevantes del proyecto
 
-Durante el desarrollo de la aplicación se busco generar codigo que pueda ser reutilizable y que sea lo mas simple posible para su lectura y mantenimiento.
+Durante el desarrollo de la aplicación se buscó generar código que pueda ser reutilizable y que sea lo mas simple posible para su lectura y mantenimiento.
 
-Otra de las premisas del proyecto era que el sitio sea responsive, cosa que se logro en base a la utilización de clases de Bootstrap y algunas adecuaciones puntuales realizadas con CSS y MediQuery.
+Otra de las premisas del proyecto era que el sitio sea responsive, cosa que se logró en base a la utilización de clases de Bootstrap y algunas adecuaciones puntuales realizadas con CSS y MediQuery.
 
 Dentro del repositorio se puede observar un MOCK que fue utilizado en las fases iniciales del desarrollo a la espera de la creación de una api y/o conexión a una base de datos.
 
-El uso de context nos permitio tener visibilidad del carrito del usuario desde cualquier sección de la apliación. 
+El uso de context nos permitió tener visibilidad del carrito del usuario desde cualquier sección de la apliación. 
 
 Al utilizar LINK pudimos mantener la idea de una SPA sin necesidad de recargar el sitio en ningun momento.
 
 ## Funcionalidades
 
-La aplicacion cuenta con las siguientes funcionalidad:
+La aplicación cuenta con las siguientes funcionalidad:
 
-* Agregar elementos al carrito de compras. En caso de que el producto que se agregue ya este, solo se aumentara la cantidad. Al momento de realizar esta accion se controla que haya stock suficiente.
-* Navegar distintas categorias de productos para acotar las busquedas.
+* Agregar elementos al carrito de compras. En caso de que el producto que se agregue ya esté, solo se aumentará la cantidad. Al momento de realizar esta acción se controla que haya stock suficiente.
+* Navegar distintas categorías de productos para acotar las búsquedas.
 * Vaciado del carrito desde el CartWidget.
 * Acceso al checkout de la compra al momento de agregar un producto o desde el CartWidget
-* Realizar busquedas de pedidos completados tanto por mail como por ID de compra. Esto lo hace en forma automática el sitio sin necesidad de elegir que opción de búsqueda deseamos utilizar.
-* Valida la informacion ingresada en el formulario de compra antes de emitir la orden.
+* Realizar búsquedas de pedidos completados tanto por mail como por ID de compra. Esto lo hace en forma automática el sitio sin necesidad de elegir que opción de búsqueda deseamos utilizar.
+* Valida la información ingresada en el formulario de compra antes de emitir la orden.
 * Actualiza el stock disponible en la base de datos luego de que se complete la orden de compra.
 
 ### Notes
 
-Este desarrollo surgio de la realizacion de un curso pero desperto gran interes en mi por esta tecnología. Me resulto muy interesante la forma en que trabaja y espero poder seguir adquiriendo experiencia.
+Este desarrollo surgió de la realización de un curso pero despertó gran interés en mi por esta tecnología. Me resultó muy interesante la forma en que trabaja y espero poder seguir adquiriendo experiencia.
