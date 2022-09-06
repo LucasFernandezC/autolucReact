@@ -68,6 +68,7 @@ ul {
 
 .cart_item {
     width: 100%;
+    height: 100%;
     padding: 15px;
     padding-right: 46px
 }
@@ -75,16 +76,24 @@ ul {
 .cart_item_image {
     width: 133px;
     height: 133px;
-    float: left
+    float: left;
+    transform: translateY(35px);
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center
+}
+.cart_item_image img {
+    max-width: 80%;
+    align-self: center;
+
 }
 
-.cart_item_image img {
-    max-width: 100%
-}
 
 .cart_item_info {
     width: calc(100% - 133px);
-    float: left;
+    float:inline-end;
     padding-top: 18px
 }
 
@@ -92,15 +101,25 @@ ul {
     margin-left: 7.53%
 }
 
+.cart_info_col{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-items: center;
+}
+
 .cart_item_title {
     font-size: 14px;
     font-weight: 400;
+    text-align: start;
     color: rgba(0, 0, 0, 0.5)
 }
 
 .cart_item_text {
+    
     font-size: 18px;
-    margin-top: 35px
+    margin-top: 35px;
+    text-align: start;
 }
 
 .cart_item_text span {
@@ -188,4 +207,55 @@ ul {
     outline: none;
     cursor: pointer;
     vertical-align: top
+}
+
+.cart-product__action {
+    
+    display: flex;
+    align-self: flex-end;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.form input{
+    margin: 20px;
+    padding: 5px;
+}
+
+.form__text{
+    width: 50%;
+}
+
+.form__number{
+    width: 30%;
+}
+
+.form__email{
+    width: 60%;
+}
+.form button{
+    width: fit-content;
+    align-self: center;
+    background: black;
+    cursor: pointer;
+    border: 1px solid black;
+    color: white;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 2px 2px;
+    transition: all 0.3s ease;
+}
+
+.error__titulo{
+    color: red;
+    font-weight: bold;
+}
+
+.error__descripcion{
+    font-style: italic ;
 }

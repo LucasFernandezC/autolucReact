@@ -1,0 +1,44 @@
+/*estilos de mi header */
+.corazon {
+  width: 10%;
+}
+
+.cabeza {
+  background-color: #314ff7;
+}
+
+.cabeza img {
+  margin: 5%;
+}
+
+.menudis {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+  
+}
+
+.menunav {
+  font-weight: bold;
+  color: white;
+  justify-content: space-evenly;
+  text-align: end;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  text-align: center;
+  align-items: center;
+  list-style: none;}
+
+  @media screen and (max-width: 767px) {
+    .cabeza img{
+        width: 100%;
+    }
+
+}

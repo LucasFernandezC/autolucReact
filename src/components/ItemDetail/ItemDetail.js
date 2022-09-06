@@ -10,23 +10,27 @@ const ItemDetail = ({ props }) => {
   
   return (
     <div>
-      <h5 className="titulo__detalle">DETALLE DE PRODUCTO</h5>
+      <h2 className="titulo__detalle">Detalle del producto</h2>
       <div className="detalle">
-        <article className="col-md-7">
+        <article className="col-sm-12 col-lg-4 ">
           <img
             src={`../${props.imagen}`}
             className="card-img-top"
             alt="Auto en venta"
           ></img>
         </article>
-        <article className="col-md-5">
-          <div className="text-center">
+        <article className="col-sm-12 col-lg-7 ">
+          <div className="text-center itemdetailcontainer__texto">
             <h2 className="">{props.titulo} </h2>
-            <p>Descripcion del producto: {props.texto}</p>
-            <p>Categoria: {props.categoria}</p>
-            <p>Stock: {props.stock}</p>
-            <p>Precio: {props.precio}</p>
-            { Quantity == 0 ? <ItemCounts inicial="1" props={props} setQuantity={setearCantidad} /> : <Link to={"/cart"}> <button className="btn btn-success"> Terminar Compra</button></Link>
+            <p><strong>Descripcion del producto:</strong> {props.texto}</p>
+            <p><strong>Categoria:</strong> {props.categoria}</p>
+            <p><strong>Stock: </strong>{props.stock}</p>
+            <p><strong>Precio:</strong> {props.precio}</p>
+            { Quantity == 0 ? <ItemCounts inicial="1" props={props} setQuantity={setearCantidad} /> : (
+            <>
+            <Link to={"/"}> <button className="btn btn-secondary"> Continuar Comprando</button></Link> 
+            <Link to={"/cart"}> <button className="btn btn-success"> Terminar Compra</button></Link> 
+            </>)
             }         
           </div>
         </article>

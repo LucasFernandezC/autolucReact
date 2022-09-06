@@ -14,10 +14,8 @@ const ItemContainer = ({ section }) => {
     const productCollection = collection(db, "products");
     if (category != undefined) {
       const q1 = query(productCollection, where("categoria", "==", category));
-      console.log("q1 ", q1);
       let productSnapshoot = await getDocs(q1);
       const productList = productSnapshoot.docs.map((doc) => {
-        console.log("product snapshot query: ", doc.data());
         let fullproduct = doc.data();
         fullproduct.id = doc.id;
         return fullproduct;
@@ -49,8 +47,8 @@ const ItemContainer = ({ section }) => {
 
   return (
     <article id="results" className="col-md-12">
-      <h2>{section}</h2>
-      <div id="resultadosBusqueda" className="busquedaresults col-md-12">
+      <h2 className="busquedaresults__Seccion">{section}</h2>
+      <div id="resultadosBusqueda" className="busquedaresults col-lg-12 align-items-stretch">
         <ItemList dataProducts={listProducts}></ItemList>
       </div>
     </article>

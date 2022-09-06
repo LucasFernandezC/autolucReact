@@ -1,4 +1,10 @@
-.navbarFont{
-    text-decoration: none;
+
+a{
+    font-weight: bold;
     color: white;
+    justify-content: space-evenly;
+    font-size: large;
+    text-align: center;
+    text-decoration: none;
+    
 }

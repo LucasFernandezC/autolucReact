@@ -12,11 +12,14 @@
     transform: translate(-50%, -50%);
     background: white;
     width: 90vw;
-    height: 90vh;
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
     box-shadow: 1px 5px 5px #00000047;
     border-radius: 5px;
     padding: 20px;
-    overflow: hidden;
+    
+    
+  
 }
 .modal-custom svg {
     position: absolute;
@@ -24,3 +27,17 @@
     top: 40px;
     cursor: pointer;
 }
+
+.btncerrar{
+    float: right;
+}
+
+.btncerrar:hover{
+    background-color: black;
+    color: white;
+    cursor:pointer;
+}
+
+.modal-custom.modalBlur > *:not(.modal) {
+    filter: blur(5px);
+  }

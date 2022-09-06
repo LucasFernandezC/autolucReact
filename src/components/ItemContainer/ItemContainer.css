@@ -1,3 +1,7 @@
+.busquedaresults__Seccion{
+    margin: 2%;
+    
+}
 
 .busqueda__imagen {
     width: 150px;
@@ -8,11 +12,14 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-content: space-evenly;
+    text-align: justify;
     color: black;
 }
 .busquedaresults__card {
-    margin: 0px 0px;
+    margin: 1px;
     width: 22rem;
+    
    
 }
 
@@ -21,10 +28,15 @@
         color: black;
         font-weight: bold;
         text-align: center;
+        font-size: xx-large;
     
 }
 
-.rbusquedaresults h2{
+.busquedaresults__card p{
+    font-size: large;
+}
+
+.busquedaresults h2{
     display: flex;
     flex-direction: row;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import "./ItemCard.css";
-import ItemCounts from "../ItemCounts/ItemCounts";
 import {Link} from "react-router-dom";
 
 const ItemCard = ({ props }) => {
@@ -15,15 +14,15 @@ const ItemCard = ({ props }) => {
         <img
           src={props.imagen}
           className="card-img-top"
-          alt="Auto en venta"
+          alt="Repuesto en venta"
         ></img>
         <div className="card-body text-center">
           <h5 className="card-title titulotarjeta">{props.titulo}</h5>
           <p className="card-text">
             {props.texto} 
           </p>
-          <p>Stock: {props.stock}</p>
-          <p>Precio: $ {props.precio}</p>
+          <p><strong>Stock: </strong>{props.stock}</p>
+          <p><strong>Precio: $ </strong>{props.precio}</p>
           
           <Link to={`/producto/${props.id}`} className="btn btn-primary start" id="agregar1">
             Agregar

@@ -4,10 +4,13 @@
     flex-wrap: nowrap;
     justify-content: space-evenly;
     color: black;
+    background-color: white;
 }
 
 .detalle img{
     margin: 25px;
+    width: 30rem;
+    border-radius: 5%;
 
 }
 
@@ -16,8 +19,31 @@
     font-weight: bolder;
 }
 .titulo__detalle {
-    text-align: start;
-    text-decoration: underline;
-    margin-top: 10px;
-    margin-left: 10px;
+    text-align: center;
+    color: white;
+    
+    padding: 2%;
+}
+
+@media screen and (max-width: 1025px) {
+    
+    .detalle img{
+        margin: auto;
+        width: 100%;
+        border-radius: 5%;
+    
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .detalle{
+        flex-direction: column;
+    }
+
+    .detalle img{
+        margin: auto;
+        width: 100%;
+        border-radius: 5%;
+    
+    }
 }

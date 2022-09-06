@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -38,30 +38,3 @@
   }
 }
 
-/*estilos de mi header - no pude linkear el correspondiente al componente header*/
-.corazon {
-  width: 10%;
-}
-
-.cabeza {
-  background-color: #314ff7;
-}
-
-.cabeza img {
-  margin: 2%;
-}
-
-.menudis {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: end;
-  align-content: flex-end;
-}
-
-.menunav {
-  font-weight: bold;
-  color: white;
-  justify-content: end;
-  text-align: end;
-}
