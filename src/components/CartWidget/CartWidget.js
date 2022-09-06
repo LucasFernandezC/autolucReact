@@ -27,6 +27,11 @@ const CartWidget = () => {
 
   }
 
+  const handleClick = (e) => {
+    setShowModal(true)
+    document.getElementById("App").style.filter = "blur(5px)"
+  }
+
   const busquedapedido = (e) => {
     e.preventDefault();
     if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(valor)) {
@@ -36,7 +41,7 @@ const CartWidget = () => {
         
         if (result.docs.length != 0) {
           result.forEach((doc) => {
-            let objeto = { id: doc.id, comprador: doc.data().comprador, items: doc.data().items }
+            let objeto = { id: doc.id, fecha: doc.data().fecha, comprador: doc.data().comprador, items: doc.data().items }
             arraycompleto.push(objeto)
             setDetailProducts(arraycompleto)
             
@@ -93,7 +98,7 @@ const CartWidget = () => {
       <NavDropdown
         title={
           <span>
-            <h2><i onClick={() => setShowModal(true)} className="bi bi bi-search carritoIcon"></i></h2>
+            <h2><i onClick={() => handleClick()} className="bi bi bi-search carritoIcon"></i></h2>
           </span>
         }
         id="collasible-nav-dropdown"
@@ -129,7 +134,7 @@ const CartWidget = () => {
                       <div className="">
                         <article>
                           <h2 className="datopedido__h2 ">Datos Pedido {pedido.id}</h2>
-
+                          <p><strong>Fecha: </strong>{pedido.fecha}</p>
                           <p><strong>Nombre: </strong>{pedido.comprador.nombre}</p>
                           <p><strong>Email: </strong>{pedido.comprador.email}</p>
                         </article>

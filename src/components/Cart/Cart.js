@@ -57,6 +57,11 @@ const Cart = () => {
     validarform();
   }, [formData])
 
+  const handleTerminar = () => {
+    setShowModal(true)
+    document.getElementById("cartblur").style.filter = "blur(5px)"
+    
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -133,12 +138,12 @@ const Cart = () => {
 
   return (
     <>
-      <div className="cart_section">
+      <div className="cart_section" >
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
-              <div className="cart_container">
-                <div className="cart_title">
+              <div className="cart_container" >
+                <div className="cart_title" >
                   Carrito de Compras
                   <small>
                     {" "}
@@ -146,8 +151,8 @@ const Cart = () => {
                     carrito){" "}
                   </small>
                 </div>
-                <div className="cart_items">
-                  <ul className="cart_list">
+                <div className="cart_items"  id="cartblur">
+                  <ul className="cart_list" >
                     {cartProducts.length > 0
                       ? cartProducts.map((product) => {
                         return (
@@ -211,7 +216,7 @@ const Cart = () => {
                     [!success && (
                       <button
                         type="button"
-                        onClick={() => setShowModal(true)}
+                        onClick={() => handleTerminar()}
                         className="button cart_button_clear"
                       >
                         Finalizar compra
@@ -256,62 +261,16 @@ const Cart = () => {
                         }
                       </form>
                     ) : (
-                      [
+                      
                         
-                        success == "errStock" ? (
-                          <>
-                            <h1>
-                              Se eliminaron los siguientes productos del carro
-                              de compras por no contar con stock
-                            </h1>
-                            {arraySinStock.map((product) => {
-                              return (
-                                <>
-                                  <li
-                                    className="cart_item clearfix"
-                                    key={product.id}
-                                  >
-                                    <div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                      <div className="cart_item_name cart_info_col">
-                                        <div className="cart_item_title">
-                                          Nombre
-                                        </div>
-                                        <div className="cart_item_text">
-                                          {product.titulo}
-                                        </div>
-                                      </div>
-
-                                      <div className="cart_item_quantity cart_info_col">
-                                        <div className="cart_item_title">
-                                          Cantidad
-                                        </div>
-                                        <div className="cart_item_text">
-                                          {product.cantidad}
-                                        </div>
-                                      </div>
-                                      <div className="cart_item_price cart_info_col">
-                                        <div className="cart_item_title">
-                                          Precio
-                                        </div>
-                                        <div className="cart_item_text">
-                                          $ {product.precio}
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </li>
-                                </>
-                              );
-                            })}
-                          </>
-                        ) : (
                           <>
                             <h2>
                               Su orden se genero y sera procesada a la brevedad
                             </h2>
                             <p>Numero de seguimiento : {success}</p>
                           </>
-                        ),
-                      ]
+                        
+                      
                     )}
                   </Modal>
                 )}

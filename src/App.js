@@ -13,16 +13,18 @@ import CartProvider from "./context/CartContext";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <CartProvider>
         <BrowserRouter>
           <Header />
+          <div id="App">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/producto/:id" element={<Detail />}></Route>
             <Route path="/:category" element={<Home />}></Route>
             <Route path="/cart" element={<Checkout />}></Route>
           </Routes>
+          </div>
         </BrowserRouter>
       </CartProvider>
     </div>
