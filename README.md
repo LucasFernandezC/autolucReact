@@ -1,3 +1,56 @@
+# AutoLuc 
+![](/autoluc/public/assets/images/logo.png)
+El proyecto comienza con la necesidad de realizar un market place para una tienda de vente de Repuestos de autos.
+Para dar solucion a esto se desarrollo un sitio basado en React con la premisa de ser una SPA. 
+Como soporte de informacion se utiliza una base de datos de FireBase.
+
+## Contenido
+El proyecto cuenta solo con una rama ya que fue desarrollado en su totalidad por el autor.
+Para la creación del mismo se itulizó:
+* HTML 5
+* CSS3
+* React "^18.2.0"
+* react-dom "^18.2.0",
+* react-router-dom "^6.3.0",
+* Bootstrap "^5.1.3"
+* Firebase "^9.9.2"
+* @emailjs/browser "^3.7.0"
+
+## Demo
+A continuación una breve demostración del funcionamiento del sitio: (https://drive.google.com/file/d/1rBYG0nXJPiRWrzmmYdTX5rG4zI2iHg18/view?usp=sharing)
+
+Adicionalmente a lo que vemos en el video, la aplicación se encarga de enviar un mail de confirmación al usuario para que obtenga toda la información necesaria para hacer seguimiento del pedido.
+
+## Como clonar el proyecto 
+En caso de querer copiar el proyecto y utilizarlo de base, realizar los siguientes pasos:
+* git clone https://github.com/LucasFernandezC/autolucReact.git 
+* Posicionarse desde la terminal en la carpeta donde descargamos el proyecto y ejecutar NPM I para instalar las dependencias.
+* Levantar el servidor con el comando NPM START
+
+
+## Previsualizacion
+A continuacion podemos ver una pantalla de preview del sitio.
+
+![](/autoluc/public/assets/images/sitio.png)
+
+### Notes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
