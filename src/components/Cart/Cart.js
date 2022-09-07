@@ -12,19 +12,20 @@ import {
   addDoc,
   updateDoc,
   doc,
-  
+  getDoc
+
 } from "firebase/firestore/lite";
 
 
 const Cart = () => {
   const [showModal, setShowModal] = useState(false);
   const [success, setSuccess] = useState();
-  const [itemSinStock, setItemSinStock] = useState([]);
-  const [validaForm, setValidaForm] = useState(false)
+  const [validaForm, setValidaForm] = useState(false);
+  const [detailProduct, setDetailProduct] = useState({});
   const { cartProducts, clear, deleteProduct, cartCantidad } = useContext(
     cartContext
   );
-  let arraySinStock = []
+
 
 
   let totalcompra = 0;
@@ -60,7 +61,7 @@ const Cart = () => {
   const handleTerminar = () => {
     setShowModal(true)
     document.getElementById("cartblur").style.filter = "blur(5px)"
-    
+
   }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -79,61 +80,58 @@ const Cart = () => {
 
 
   const sendmail = () => {
-        var templateParams = {
-        correo: formData.email,
-        repuestos: cartCantidad,
-        telefono: formData.telefono,
-        precio: totalcompra,
-        reserva: success };
+    var templateParams = {
+      correo: formData.email,
+      repuestos: cartCantidad,
+      telefono: formData.telefono,
+      precio: totalcompra,
+      reserva: success
+    };
 
-      emailjs.init("qO6vBxY3qj1kt6g7l");
-      emailjs.send("default_service", "template_atamx5h", templateParams).then(
-        function (response) {
-          console.log("SUCCESS!", response.status, response.text);
-        },
-        function (error) {
-          console.log("FAILED...", error);
-        }
-      )
-    }
-  
+    emailjs.init("qO6vBxY3qj1kt6g7l");
+    emailjs.send("default_service", "template_atamx5h", templateParams).then(
+      function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      function (error) {
+        console.log("FAILED...", error);
+      }
+    )
+  }
+
 
   const grabarOrden = async (agregarOrden) => {
-    if (itemSinStock.length == 0) {
-      const collectionOrden = collection(db, "orders");
-      addDoc(collectionOrden, agregarOrden).then((ordenDoc) => {
-        setSuccess(ordenDoc.id);
-        
-        //al confirmar la orden se actualiza el stock de los productos del carrito
-        orden.items.forEach((element) => {
-          const docRef = doc(db, "products", element.id);
-          const data = {
-            stock:
-              cartProducts.find((dato) => dato.id == element.id).stock -
-              element.cantidad,
-          };
-          updateDoc(docRef, data).then((docRef) => {
-            console.log("actualice stock");
-          });
+
+    const collectionOrden = collection(db, "orders");
+    addDoc(collectionOrden, agregarOrden).then((ordenDoc) => {
+      setSuccess(ordenDoc.id);
+
+      //al confirmar la orden se actualiza el stock de los productos del carrito
+      orden.items.forEach((element) => {
+        const docRef = doc(db, "products", element.id);
+        const data = {
+          stock:
+            cartProducts.find((dato) => dato.id == element.id).stock -
+            element.cantidad,
+        };
+        updateDoc(docRef, data).then((docRef) => {
+          console.log("actualice stock");
         });
-        // fin actualizacion stock
-        //envio mail de confirmacion al usuario
-        sendmail();
-        //fin de envio de mail de confirmacion al usuario
-        //limpio el carrito
-        clear();
-        //fin limpio carrito
-        //muestro la orden por un momento y vuelvo a la pantalla de compra
-        setTimeout(() => {
-          setShowModal(false);
-        }, 4000);
-        //fin muestro orden
       });
-    } else {
+      // fin actualizacion stock
+      //envio mail de confirmacion al usuario
+      sendmail();
+      //fin de envio de mail de confirmacion al usuario
+      //limpio el carrito
+      clear();
+      //fin limpio carrito
+      //muestro la orden por un momento y vuelvo a la pantalla de compra
       setTimeout(() => {
         setShowModal(false);
-      }, 5000);
-    }
+      }, 4000);
+      //fin muestro orden
+    });
+
   };
 
   return (
@@ -151,7 +149,7 @@ const Cart = () => {
                     carrito){" "}
                   </small>
                 </div>
-                <div className="cart_items"  id="cartblur">
+                <div className="cart_items" id="cartblur">
                   <ul className="cart_list" >
                     {cartProducts.length > 0
                       ? cartProducts.map((product) => {
@@ -261,16 +259,16 @@ const Cart = () => {
                         }
                       </form>
                     ) : (
-                      
-                        
-                          <>
-                            <h2>
-                              Su orden se genero y sera procesada a la brevedad
-                            </h2>
-                            <p>Numero de seguimiento : {success}</p>
-                          </>
-                        
-                      
+
+
+                      <>
+                        <h2>
+                          Su orden se genero y sera procesada a la brevedad
+                        </h2>
+                        <p>Numero de seguimiento : {success}</p>
+                      </>
+
+
                     )}
                   </Modal>
                 )}

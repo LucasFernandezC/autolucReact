@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useContext } from "react";
 import "./CartWidget.css";
 import { cartContext } from "../../context/CartContext";
@@ -19,9 +19,7 @@ const CartWidget = () => {
   const [detailProduct, setDetailProduct] = useState({});
   const [detailProducts, setDetailProducts] = useState([]);
 
-
-
-
+ 
   const handleChange = (e) => {
     setValor(e.target.value)
 
@@ -95,17 +93,11 @@ const CartWidget = () => {
 
   return (
     <div className="cart-widget">
-      <NavDropdown
-        title={
-          <span>
+      
+          
             <h2><i onClick={() => handleClick()} className="bi bi bi-search carritoIcon"></i></h2>
-          </span>
-        }
-        id="collasible-nav-dropdown"
-
-      >
-
-      </NavDropdown>
+          
+        
       {showModal && (
         <Modal title="Busqueda de pedidos realizados" close={() => setShowModal()}>
           {success == undefined ? (<form action="#" id="form" className="form" onSubmit={busquedapedido}>

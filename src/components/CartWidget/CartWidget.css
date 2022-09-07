@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: row;
     color: black;
+    align-items: center;
 }
 
 .item-cart-product img {
@@ -77,6 +78,9 @@ button.btn-delete-all:hover {
     color: black;
 }
 
+.carritoIcon:hover{
+    cursor: pointer;
+}
 .cart-product__buscar{
     align-self: center;
     justify-self: center;
