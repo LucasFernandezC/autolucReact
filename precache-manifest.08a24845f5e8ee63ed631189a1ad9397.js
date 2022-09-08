@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "58d9ffd7db919c49a537",
-    "url": "/autolucReact/static/css/main.65c9c671.chunk.css"
+    "revision": "7afd054118c874b4dc79",
+    "url": "/autolucReact/static/css/main.0d213d87.chunk.css"
   },
   {
-    "revision": "58d9ffd7db919c49a537",
-    "url": "/autolucReact/static/js/main.58d9ffd7.chunk.js"
+    "revision": "7afd054118c874b4dc79",
+    "url": "/autolucReact/static/js/main.7afd0541.chunk.js"
   },
   {
-    "revision": "68ca4d39d6a968f01ce9",
+    "revision": "a15853eb3759ef9527cf",
     "url": "/autolucReact/static/css/1.ed88a9d7.chunk.css"
   },
   {
-    "revision": "68ca4d39d6a968f01ce9",
-    "url": "/autolucReact/static/js/1.68ca4d39.chunk.js"
+    "revision": "a15853eb3759ef9527cf",
+    "url": "/autolucReact/static/js/1.a15853eb.chunk.js"
   },
   {
     "revision": "ae897b30b29dc7277bf2",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/autolucReact/static/media/bootstrap-icons.be6df3f0.woff"
   },
   {
-    "revision": "d216011717404b25f498159662cb7cf0",
+    "revision": "c2c22a7359a38fbf86d39a8357a908fe",
     "url": "/autolucReact/index.html"
   }
 ];
