@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import { useState, useContext } from "react";
+import React from "react";
+import { useContext } from "react";
 import "./CartWidget.css";
 import { cartContext } from "../../context/CartContext";
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Modal from "../Modal/Modal";
-import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore/lite";
-import db from "../../utils/firebaseConfig";
+
 
 const CartWidget = () => {
 
