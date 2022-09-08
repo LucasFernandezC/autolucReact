@@ -1,0 +1,21 @@
+.cart-product__buscar{
+    align-self: center;
+    justify-self: center;
+}
+
+.item-cart-search {
+    /* float: left; */
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    justify-self: center;
+    width: 150px;
+    border-bottom: 1px solid #ccc;
+    
+}
+
+.datopedido__h2{
+    margin-top: 50px;
+}
