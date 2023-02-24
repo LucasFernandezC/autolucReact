@@ -251,7 +251,7 @@ const Cart = () => {
                           value={formData.email}
                         />
                         {validaForm == true ?
-                          (<button type="submit">Realizar Pedido</button>) :
+                          (<button type="submit">Registrarse</button>) :
                           (<><p className="error__titulo">- Verifique los campos ingresados - </p>
                             <p className="error__descripcion">El nómbre debe tener al menos 4 caracteres</p>
                             <p className="error__descripcion">El teléfono solo puede contener números y debe tener una longitud de 10 caracteres</p>
